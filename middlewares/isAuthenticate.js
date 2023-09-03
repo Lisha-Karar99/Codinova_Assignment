@@ -10,7 +10,7 @@ module.exports.authenticatedAdmin = async (req, res, next) => {
     // get token from header
     let token = req.headers["authorization"].split(" ")[1];
 
-    let verfiedToken = await jwt.verify(token, process.env.ACCESS_SEKRET_KEY);
+    let verfiedToken = jwt.verify(token, process.env.ACCESS_SEKRET_KEY);
 
     // if token verfied
     if (verfiedToken.data.type === userTypes.ADMIN) {
@@ -44,7 +44,7 @@ module.exports.authenticatedManager = async (req, res, next) => {
     // get token from header
     let token = req.headers["authorization"].split(" ")[1];
 
-    let verfiedToken = await jwt.verify(token, process.env.ACCESS_SEKRET_KEY);
+    let verfiedToken = jwt.verify(token, process.env.ACCESS_SEKRET_KEY);
 
     // if token verfied
     if (verfiedToken.data.type === userTypes.MANAGER) {
@@ -78,7 +78,7 @@ module.exports.authenticatedBoth = async (req, res, next) => {
     // get token from header
     let token = req.headers["authorization"].split(" ")[1];
 
-    let verfiedToken = await jwt.verify(token, process.env.ACCESS_SEKRET_KEY);
+    let verfiedToken = jwt.verify(token, process.env.ACCESS_SEKRET_KEY);
 
     // if token verfied
     if (

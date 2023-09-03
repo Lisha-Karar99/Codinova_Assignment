@@ -119,9 +119,9 @@ module.exports.newToken = async (req, res) => {
   try {
     const refreshToken = req.body.token;
     if (!refreshToken) {
-      throw "Not authorized";
+      throw new Error("Not authorized");
     }
-    const payload = await jwt.verify(
+    const payload = jwt.verify(
       refreshToken,
       process.env.REFRESH_SEKRET_KEY
     );
