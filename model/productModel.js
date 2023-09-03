@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const PRODUCT_FILE_PATH = path.join("/uploads");
+const fs = require("fs")
 
 // creating schema
 const productSchema = new mongoose.Schema(
@@ -31,6 +32,18 @@ const productSchema = new mongoose.Schema(
   }
 );
 
+// create folder if does not exist
+let folder = path.join(__dirname, "..", PRODUCT_FILE_PATH)
+if(!fs.existsSync(folder)){
+  fs.mkdir(folder, (err)=>{
+    if(err){
+      return console.error(err)
+    }
+    else{
+      console.log("created")
+    }
+  })
+}
 // storing files into disk
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

@@ -20,7 +20,7 @@ module.exports.storeProduct = async (req, res) => {
       quantity: req.body.quantity,
     };
 
-    await Product.uploadImage(req, res, async function (err) {
+    Product.uploadImage(req, res, async function (err) {
       try {
         if (err) {
           throw new Error("Error in uploading file");
@@ -70,6 +70,7 @@ module.exports.updateProduct = async (req, res) => {
     if (req.body.name) product.name = req.body.name;
     if (req.body.category) product.category = req.body.category;
     if (req.body.quantity) product.quantity = req.body.quantity;
+    if (req.body.unitPrice) product.unitPrice = req.body.unitPrice;
 
     Product.uploadImage(req, res, async function (err) {
       try {
